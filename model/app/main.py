@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from schemas import HeatmapResponse, ForecastResponse, RentalType
-from inference_engine import inference_engine
+from .schemas import HeatmapResponse, ForecastResponse, RentalType
+from .inference_engine import inference_engine
 
 app = FastAPI(title="Real Estate AI API", version="3.0")
 

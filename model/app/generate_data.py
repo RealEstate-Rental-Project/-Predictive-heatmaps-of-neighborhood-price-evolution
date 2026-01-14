@@ -138,5 +138,5 @@ for neigh in neighborhoods:
             })
 
 df = pd.DataFrame(data)
-df.to_csv("properties_data.csv", index=False)
-print("Success! properties_data.csv created with Moroccan market trends.")
+df.to_csv("model/data/properties_data.csv", index=False)
+print("Success! model/data/properties_data.csv created with Moroccan market trends.")
