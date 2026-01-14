@@ -2,5 +2,5 @@
 @Library('ml-shared-library') _
 
 mlModelPipeline (
-    modelName = 'mon-modele-image'
+    modelName : 'mon-modele-image'
 )
