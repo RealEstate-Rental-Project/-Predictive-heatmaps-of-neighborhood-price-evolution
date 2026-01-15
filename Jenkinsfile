@@ -1,4 +1,4 @@
-@Library('ml-shared-library') _
+@Library('Jenkins-shared-library') _
 
 mlModelPipeline(
     appName: 'predictive-heatmaps-of-neighborhood-price-evolution',
