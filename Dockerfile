@@ -1,10 +1,10 @@
-# Utilisation d'une image Python légère
-FROM python:3.9-slim
+# Utilisation d'une image Python légère et stable
+FROM python:3.10-slim
 
-# Définition du répertoire de travail
+# Définition du répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Installation des dépendances système nécessaires (si besoin pour numpy/pandas)
+# Installation des dépendances système nécessaires pour numpy/pandas
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
@@ -15,16 +15,12 @@ COPY requirements.txt .
 # Installation des bibliothèques Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copie de tout le code source dans le conteneur
+# Copie de tout le code source
+# Cela inclut les dossiers model/models/ et model/data/ remplis par Jenkins
 COPY . .
 
-# Note : Dans une pipeline Jenkins, le fichier 'model_output.pkl' 
-# doit idéalement être généré ou récupéré avant le build.
-# Si vous voulez forcer l'entraînement au build (non recommandé pour de gros modèles) :
-# RUN python train_model.py
+# Le port d'écoute est configuré à 8000 dans model/app/main.py
+EXPOSE 8000
 
-# Exposer le port utilisé par FastAPI (défini dans main.py)
-EXPOSE 8002
-
-# Commande de lancement de l'application
-CMD ["python", "main.py"]
+# Commande de lancement pointant vers le dossier model/app/
+CMD ["python", "model/app/main.py"]
